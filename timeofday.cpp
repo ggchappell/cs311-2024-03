@@ -24,5 +24,6 @@ ostream & operator<<(ostream & out,
     int h, m, s;
     t.getTime(h, m, s);
     out << h << ":" << m << ":" << s;
+    return out;
 }
 
