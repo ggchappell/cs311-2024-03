@@ -24,6 +24,7 @@
 // Class TimeOfDay
 // Time of day: hours, minutes, seconds.
 class TimeOfDay {
+
 // ***** TimeOfDay: Friend declarations *****
 
     friend
@@ -34,10 +35,10 @@ class TimeOfDay {
 private:
 
     enum {
-        s_in_m = 60,  // Seconds in a minute
-        m_in_h = 60,  // Minutes in an hour
-        h_in_d = 24,  // Hours in a day
-        s_in_d = h_in_d * m_in_h * s_in_m
+        S_IN_M = 60,  // Seconds in a minute
+        M_IN_H = 60,  // Minutes in an hour
+        H_IN_D = 24,  // Hours in a day
+        S_IN_D = H_IN_D * M_IN_H * S_IN_M
                       // Seconds in a day
     };
 
@@ -57,9 +58,9 @@ public:
               int mm,
               int ss)
     {
-        assert(0 <= hh && hh < h_in_d);
-        assert(0 <= mm && mm < m_in_h);
-        assert(0 <= ss && ss < s_in_m);
+        assert(0 <= hh && hh < H_IN_D);
+        assert(0 <= mm && mm < M_IN_H);
+        assert(0 <= ss && ss < S_IN_M);
 
         setTime(hh, mm, ss);
     }
@@ -71,10 +72,10 @@ public:
     // Move time one second forward.
     TimeOfDay & operator++()
     {
-        assert(0 <= _secs && _secs < s_in_d);
+        assert(0 <= _secs && _secs < S_IN_D);
 
         ++_secs;
-        if (_secs >= s_in_d)
+        if (_secs >= S_IN_D)
            _secs = 0;
         return *this;
     }
@@ -83,7 +84,7 @@ public:
     // Move time one second forward.
     TimeOfDay operator++([[maybe_unused]] int dummy)
     {
-        assert(0 <= _secs && _secs < s_in_d);
+        assert(0 <= _secs && _secs < S_IN_D);
 
         auto save = *this;
         ++(*this);
@@ -94,11 +95,11 @@ public:
     // Move time one second backward.
     TimeOfDay & operator--()
     {
-        assert(0 <= _secs && _secs < s_in_d);
+        assert(0 <= _secs && _secs < S_IN_D);
 
         --_secs;
         if (_secs < 0)
-            _secs = s_in_d-1;
+            _secs = S_IN_D-1;
         return *this;
     }
 
@@ -106,7 +107,7 @@ public:
     // Move time one second backward.
     TimeOfDay operator--([[maybe_unused]] int dummy)
     {
-        assert(0 <= _secs && _secs < s_in_d);
+        assert(0 <= _secs && _secs < S_IN_D);
 
         auto save = *this;
         --(*this);

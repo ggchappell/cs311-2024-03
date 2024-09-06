@@ -1,6 +1,7 @@
 // timeofday.cpp
 // Glenn G. Chappell
-// 2024-08-30
+// Started: 2024-08-30
+// Updated: 2024-09-04
 //
 // For CS 311 Fall 2024
 // Source for class TimeOfDay
@@ -24,11 +25,11 @@ void TimeOfDay::getTime(int & hh,
                         int & mm,
                         int & ss) const
 {
-    assert(0 <= _secs && _secs < s_in_d);
+    assert(0 <= _secs && _secs < S_IN_D);
 
-    ss = _secs % s_in_m;
-    mm = (_secs / s_in_m) % m_in_h;
-    hh = _secs / (m_in_h*s_in_m);
+    ss = _secs % S_IN_M;
+    mm = (_secs / S_IN_M) % M_IN_H;
+    hh = _secs / (M_IN_H*S_IN_M);
 }
 
 // TimeOfDay::setTime
@@ -36,11 +37,11 @@ void TimeOfDay::setTime(int hh,
                         int mm,
                         int ss)
 {
-    assert(0 <= hh && hh < h_in_d);
-    assert(0 <= mm && mm < m_in_h);
-    assert(0 <= ss && ss < s_in_m);
+    assert(0 <= hh && hh < H_IN_D);
+    assert(0 <= mm && mm < M_IN_H);
+    assert(0 <= ss && ss < S_IN_M);
 
-    _secs = hh*(m_in_h*s_in_m) + mm*m_in_h + ss;
+    _secs = hh*(M_IN_H*S_IN_M) + mm*M_IN_H + ss;
 }
 
 
@@ -53,7 +54,7 @@ void TimeOfDay::setTime(int hh,
 ostream & operator<<(ostream & str,
                      const TimeOfDay & obj)
 {
-    assert(0 <= obj._secs && obj._secs < TimeOfDay::s_in_d);
+    assert(0 <= obj._secs && obj._secs < TimeOfDay::S_IN_D);
 
     int hh, mm, ss;
     obj.getTime(hh, mm, ss);
