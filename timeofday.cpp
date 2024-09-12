@@ -1,7 +1,7 @@
 // timeofday.cpp
 // Glenn G. Chappell
 // Started: 2024-08-30
-// Updated: 2024-09-04
+// Updated: 2024-09-11
 //
 // For CS 311 Fall 2024
 // Source for class TimeOfDay

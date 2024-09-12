@@ -1,7 +1,7 @@
 // timeofday.hpp
 // Glenn G. Chappell
 // Started: 2024-08-30
-// Updated: 2024-09-04
+// Updated: 2024-09-11
 //
 // For CS 311 Fall 2024
 // Header for class TimeOfDay
@@ -23,6 +23,8 @@
 
 // Class TimeOfDay
 // Time of day: hours, minutes, seconds.
+// Invariants:
+//     0 <= _secs < #seconds_in_a_day.
 class TimeOfDay {
 
 // ***** TimeOfDay: Friend declarations *****
@@ -54,6 +56,10 @@ public:
 
     // Ctor from hours, minutes, seconds
     // Set time to given # of hours, minutes, seconds past midnight.
+    // Pre:
+    //    0 <= hh < H_IN_D.
+    //    0 <= mm < M_IN_H.
+    //    0 <= ss < S_IN_M.
     TimeOfDay(int hh,
               int mm,
               int ss)
@@ -64,6 +70,9 @@ public:
 
         setTime(hh, mm, ss);
     }
+
+    // We use the automatically generated destructor and copy/move
+    // operations.
 
 // ***** TimeOfDay: General public operators *****
 public:
@@ -127,6 +136,10 @@ public:
     // setTime
     // Set time to given # of hours, minutes, seconds past midnight.
     // Function defined in source file.
+    // Pre:
+    //    0 <= hh < H_IN_D.
+    //    0 <= mm < M_IN_H.
+    //    0 <= ss < S_IN_M.
     void setTime(int hh,
                  int mm,
                  int ss);
