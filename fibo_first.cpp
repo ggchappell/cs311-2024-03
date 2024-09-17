@@ -1,6 +1,7 @@
-// fibo_first.cpp  UNFINISHED
+// fibo_first.cpp
 // Glenn G. Chappell
-// 2024-09-15
+// Started: 2024-09-15
+// Updated: 2024-09-16
 //
 // For CS 311 Fall 2024
 // Computing Fibonacci Numbers
@@ -31,8 +32,15 @@ using bignum = uint_fast64_t;  // fastest unsigned w/ >= 64 bits
 // Does not throw.
 bignum fibo(int n)
 {
-    return bignum(42);  // DUMMY
-    // TODO: WRITE THIS!!!
+    // BASE CASE
+
+    if (n <= 1)
+        return bignum(n);
+
+    // RECURSIVE CASE
+
+    // Invariant: n >= 2
+    return fibo(n-2) + fibo(n-1);
 }
 
 
