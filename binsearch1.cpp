@@ -43,13 +43,13 @@ using bignum = int_fast64_t;
 // Requirements on types:
 //     RAIter is a random-access iterator type.
 //     ValueType is the value type of RAIter.
-//     ValueType has a public operator<, operator==, copy ctor.
+//     ValueType has a public operator<, operator==, copy ctor, dctor.
 //     operator< is a total order on ValueType.
 // Pre:
 //     [first, last) is a valid range.
 //     Values in the range are sorted by < (ascending).
-// Throws what & when a ValueType operation (op<, op==) throws. If no
-// ValueType operation throws, then binSearch does not throw.
+// Throws what & when a ValueType operation throws. If no ValueType
+// operation throws, then binSearch does not throw.
 template <typename RAIter, typename ValueType>
 bool binSearch(RAIter first,      // [first, last) is range to search
                RAIter last,
