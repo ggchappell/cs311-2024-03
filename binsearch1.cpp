@@ -162,6 +162,11 @@ int main()
         { (SIZE*10),     false }
     };
 
+    // Wait for user before Binary Search calls
+    cout << "Press ENTER for Binary Search calls ";
+    userPause();
+    cout << endl;
+
     // Do Binary Search calls
     for (const auto & p : searchfor)
     {
