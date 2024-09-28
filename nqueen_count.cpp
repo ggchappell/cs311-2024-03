@@ -16,6 +16,7 @@ using std::vector;
 #include <string>
 using std::string;
 using std::getline;
+using std::to_string;
 #include <sstream>
 using std::istringstream;
 #include <cstddef>
@@ -206,6 +207,29 @@ bool getInt(const string & prompt,  // Print this before doing input
 }
 
 
+// intWithSep
+// Return string form of given integer with a separator (default: ",")
+// every 3 digits.
+// intWithSep(-123456789) returns "-123,456,789"s.
+// intWithSep(1234567, ".") returns "1.234.567"s.
+// Requirements on Types:
+//     IntType must be an integer type.
+template <typename IntType>
+string intWithSep(IntType num,               // Integer to stringify
+                  const string & sep = ",")  // Separator
+{
+    const auto SPACING = 3;  // How many digits between separators
+    auto result = to_string(num);
+    auto pos = result.size();
+    while (pos > SPACING + (num < 0))
+    {
+        pos -= SPACING;
+        result.insert(pos, sep);
+    }
+    return result;
+}
+
+
 // Main program
 // Repeatedly input an integer n and print number of n-Queen solutions.
 // Terminates on fatal error in input or n <= 0.
@@ -225,8 +249,9 @@ int main()
         // Print number of solutions to n-Queens Problem
         cout << "\n";
         cout << "Number of n-Queen Solutions for "
-             << n << " x " << n << " chessboard:\n";
-        cout << "  " << nQueenCount(n) << "\n\n";
+             << n << " x " << n << " chessboard:" << endl;
+        int result = nQueenCount(n);
+        cout << "  " << intWithSep(result) << "\n\n";
     }
 }
 
