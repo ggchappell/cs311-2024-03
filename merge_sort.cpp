@@ -23,7 +23,6 @@ using std::move;
 using std::begin;
 using std::end;
 using std::distance;
-using std::next;
 using std::iterator_traits;
 #include <algorithm>
 using std::move;
