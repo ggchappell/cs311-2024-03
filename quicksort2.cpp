@@ -1,6 +1,7 @@
 // quicksort2.cpp  UNFINISHED
 // Glenn G. Chappell
-// 2024-10-03
+// Started: 2024-10-03
+// Updated: 2024-10-04
 //
 // For CS 311 Fall 2024
 // Quicksort
@@ -190,7 +191,25 @@ Iter medianOf3(Iter ai, Iter bi, Iter ci)
 template <typename RAIter>
 void quicksort(RAIter first, RAIter last)
 {
-    // TODO: WRITE THIS!!!
+    // This is function quicksort from quicksort1.cpp.
+    // TODO: FINISH THIS!!!
+
+    // BASE CASE
+
+    if (first == last)  // empty list
+        return;
+
+    // RECURSIVE CASE
+
+    // Simple pivot choice: let the pivot be the first item
+    auto pivotiter = first;
+
+    // Do partition
+    hPartition(first, last, pivotiter);
+
+    // Two recursive sorts
+    quicksort(first, pivotiter);
+    quicksort(pivotiter+1, last);  // Range does not include the pivot
 }
 
 
@@ -424,14 +443,15 @@ int main()
     cout << "\n";
     trySort_small();
 
+    // MESSY-DATA TRIAL MOVED BEFORE NEARLY-SORTED DATA TRIALS
+    cout << "\n";
+    trySort_messy();
+
     cout << "\n";
     trySort_nearlySorted1();
 
     cout << "\n";
     trySort_nearlySorted2();
-
-    cout << "\n";
-    trySort_messy();
 
     // ********** Done **********
 
