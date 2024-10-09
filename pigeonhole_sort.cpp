@@ -1,6 +1,7 @@
 // pigeonhole_sort.cpp
 // Glenn G. Chappell
-// 2024-10-08
+// Started: 2024-10-08
+// Updated: 2024-10-09
 //
 // For CS 311 Fall 2024
 // Pigeonhole Sort for small-ish integers
@@ -57,11 +58,15 @@ void pigeonholeSort(FDIter first, FDIter last)
                                             //  0 .. MAXVAL
     vector<vector<int>> buckets(NUM_BUCKETS);
                                    // Vector of buckets
+    /*
+    // Performance is mostly better if we do not reserve space.
+    // (But try it, if you like; uncomment this code.)
     size_t size = distance(first, last);
     for (auto & b : buckets)
     {
         b.reserve(size);
     }
+    */
 
     // Place each item in the appropriate bucket (stable!)
     for (auto it = first; it != last; ++it)
