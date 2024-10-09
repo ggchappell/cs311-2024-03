@@ -1,6 +1,7 @@
 // radix_sort.cpp
 // Glenn G. Chappell
-// 2024-10-08
+// Started: 2024-10-08
+// Updated: 2024-10-09
 //
 // For CS 311 Fall 2024
 // Radix Sort for integers with specified number of digits
@@ -64,6 +65,8 @@ void radixSort(FDIter first, FDIter last)
                                    //  0 .. NUM_BUCKETS-1
     vector<vector<int>> buckets(NUM_BUCKETS);
                                    // Vector of buckets
+    // Unlike Pigeonhole Sort, radix sort performs better when we
+    // reserve space, so do that.
     size_t size = distance(first, last);
     for (auto & b : buckets)
     {
