@@ -155,6 +155,9 @@ public:
     // insert
     iterator insert(iterator pos,
                     value_type item)
+        // Above, passing by value is appropriate, since our value type
+        // is int. However, if the value type is changed, then a
+        // different parameter-passing method may need to be used.
     {
         // TODO: WRITE THIS!!!
         return begin();  // DUMMY
@@ -169,6 +172,9 @@ public:
 
     // push_back
     void push_back(value_type item)
+        // Above, passing by value is appropriate, since our value type
+        // is int. However, if the value type is changed, then a
+        // different parameter-passing method may need to be used.
     {
         insert(end(), item);
     }
