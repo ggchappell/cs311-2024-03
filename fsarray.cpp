@@ -1,8 +1,8 @@
 // fsarray.cpp  UNFINISHED
-// VERSION 2
+// VERSION 3
 // Glenn G. Chappell
 // Started: 2024-10-15
-// Updated: 2024-10-16
+// Updated: 2024-10-18
 //
 // For CS 311 Fall 2024
 // Source for class FSArray

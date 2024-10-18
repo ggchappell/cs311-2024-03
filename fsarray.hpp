@@ -1,8 +1,8 @@
 // fsarray.hpp  UNFINISHED
-// VERSION 2
+// VERSION 3
 // Glenn G. Chappell
 // Started: 2024-10-15
-// Updated: 2024-10-16
+// Updated: 2024-10-18
 //
 // For CS 311 Fall 2024
 // Header for class FSArray
@@ -22,12 +22,17 @@
 //   - Write (untested versions of) the following member functions:
 //     default ctor, ctor from size (these two are single func), dctor,
 //     op[], size, empty, begin, end, push_back, pop_back.
+// - v3:
+//   - Document exception-safety guarantees for most functions.
+//   - Write copy ctor.
 
 #ifndef FILE_FSARRAY_HPP_INCLUDED
 #define FILE_FSARRAY_HPP_INCLUDED
 
 #include <cstddef>
 // For std::size_t
+#include <algorithm>
+// For std::copy
 
 
 // *********************************************************************
@@ -61,24 +66,33 @@ public:
 public:
 
     // Default ctor & ctor from size
+    // Strong Guarantee
     explicit FSArray(size_type thesize=0)
         :_size(thesize),
          _data(new value_type[thesize])
     {}
 
     // Copy ctor
+    // Strong Guarantee
     FSArray(const FSArray & other)
+        :_size(other.size()),
+         _data(new value_type[other.size()])
     {
-        // TODO: WRITE THIS!!!
+        std::copy(other.begin(), other.end(), begin());
+        // The above call to std::copy does not throw, since it copies
+        // int values. But if value_type is changed, then the call may
+        // throw, in which case this copy ctor may need to be rewritten.
     }
 
     // Move ctor
+    // No-Throw Guarantee
     FSArray(FSArray && other) noexcept
     {
         // TODO: WRITE THIS!!!
     }
 
     // Copy assignment operator
+    // ??? Guarantee
     FSArray & operator=(const FSArray & other)
     {
         // TODO: WRITE THIS!!!
@@ -86,6 +100,7 @@ public:
     }
 
     // Move assignment operator
+    // No-Throw Guarantee
     FSArray & operator=(FSArray && other) noexcept
     {
         // TODO: WRITE THIS!!!
@@ -93,6 +108,7 @@ public:
     }
 
     // Dctor
+    // No-Throw Guarantee
     ~FSArray()
     {
         delete [] _data;
@@ -102,6 +118,7 @@ public:
 public:
 
     // operator[] - non-const & const
+    // No-Throw Guarantee
     value_type & operator[](size_type index)
     {
         return _data[index];
@@ -115,18 +132,21 @@ public:
 public:
 
     // size
+    // No-Throw Guarantee
     size_type size() const
     {
         return _size;
     }
 
     // empty
+    // No-Throw Guarantee
     bool empty() const
     {
         return size() == 0;
     }
 
     // begin - non-const & const
+    // No-Throw Guarantee
     iterator begin()
     {
         return _data;
@@ -137,6 +157,7 @@ public:
     }
 
     // end - non-const & const
+    // No-Throw Guarantee
     iterator end()
     {
         return begin() + size();
@@ -147,12 +168,14 @@ public:
     }
 
     // resize
+    // ??? Guarantee
     void resize(size_type newsize)
     {
         // TODO: WRITE THIS!!!
     }
 
     // insert
+    // ??? Guarantee
     iterator insert(iterator pos,
                     value_type item)
         // Above, passing by value is appropriate, since our value type
@@ -164,6 +187,7 @@ public:
     }
 
     // erase
+    // ??? Guarantee
     iterator erase(iterator pos)
     {
         // TODO: WRITE THIS!!!
@@ -171,6 +195,7 @@ public:
     }
 
     // push_back
+    // ??? Guarantee
     void push_back(value_type item)
         // Above, passing by value is appropriate, since our value type
         // is int. However, if the value type is changed, then a
@@ -180,12 +205,14 @@ public:
     }
 
     // pop_back
+    // ??? Guarantee
     void pop_back()
     {
         erase(end()-1);
     }
 
     // swap
+    // No-Throw Guarantee
     void swap(FSArray & other) noexcept
     {
         // TODO: WRITE THIS!!!
