@@ -1,8 +1,8 @@
-// fsarray.cpp  UNFINISHED
-// VERSION 5
+// fsarray.cpp  HAND-OFF
+// VERSION 6
 // Glenn G. Chappell
 // Started: 2024-10-15
-// Updated: 2024-10-22
+// Updated: 2024-10-23
 //
 // For CS 311 Fall 2024
 // Source for class FSArray
@@ -23,9 +23,10 @@ using std::copy;
 // Copy ctor
 // See header for info.
 FSArray::FSArray(const FSArray & other)
-    :_size(other.size()),
-     _data(other.size() == 0 ? nullptr
-                             : new value_type[other.size()])
+    :_capacity(other._capacity),
+     _size(other.size()),
+     _data(other._capacity == 0 ? nullptr
+                                : new value_type[other._capacity])
 {
     copy(other.begin(), other.end(), begin());
     // The above call to std::copy does not throw, since it copies int
@@ -37,9 +38,11 @@ FSArray::FSArray(const FSArray & other)
 // Move ctor
 // See header for info.
 FSArray::FSArray(FSArray && other) noexcept
-    :_size(other._size),
+    :_capacity(other._capacity),
+     _size(other._size),
      _data(other._data)
 {
+    other._capacity = 0;
     other._size = 0;
     other._data = nullptr;
 }
