@@ -20,7 +20,8 @@
 // Singly Linked List node, with client-specified value type
 // Invariants:
 //     Either _next is nullptr, or _next points to an LLNode, allocated
-//      with new, owned by *this.
+//      with new, owned by *this (and thus _next points to a
+//      null-ptr-terminated Linked List of LLNode).
 // Requirements on Types:
 //     ValType must have a copy ctor and a (non-throwing) dctor.
 template <typename ValType>
