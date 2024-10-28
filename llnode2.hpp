@@ -1,7 +1,7 @@
 // llnode2.hpp
 // Glenn G. Chappell
 // Started: 2024-10-24
-// Updated: 2024-10-25
+// Updated: 2024-10-28
 //
 // For CS 311 Fall 2024
 // Header for struct LLNode2
@@ -63,8 +63,14 @@ struct LLNode2 {
          _next(std::move(next))
     {}
 
-    // Automatically generated dctor works.
-    ~LLNode2() = default;
+    // dctor
+    // Iterative: avoid recursive destruction.
+    // No-Throw Guarantee
+    ~LLNode2()
+    {
+        while (_next)
+            pop_front(_next);
+    }
 
     // No default ctor, no copy/move operations.
     LLNode2() = delete;
