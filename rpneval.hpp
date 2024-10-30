@@ -1,6 +1,7 @@
-// rpneval.hpp  UNFINISHED
+// rpneval.hpp
 // Glenn G. Chappell
-// 2024-10-29
+// Updated: 2024-10-30
+// Started: 2024-10-29
 //
 // For CS 311 Fall 2024
 // Header for rpnEval: Reverse Polish Notation evaluation

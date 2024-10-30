@@ -1,6 +1,7 @@
-// rpneval.cpp  UNFINISHED
+// rpneval.cpp
 // Glenn G. Chappell
-// 2024-10-29
+// Updated: 2024-10-30
+// Started: 2024-10-29
 //
 // For CS 311 Fall 2024
 // Source for rpnEval: Reverse Polish Notation evaluation
@@ -9,10 +10,15 @@
 #include "rpneval.hpp"
 #include <string>
 // For std::string
+// For std::stoi
 #include <stack>
 // For std::stack
 #include <cctype>
 // For std::isdigit
+#include <stdexcept>
+// For std::domain_error
+// For std::out_of_range
+// For std::overflow_error
 
 
 // isInteger
@@ -57,6 +63,48 @@ bool isBinop(const std::string & str) noexcept
 void rpnEval(std::stack<int> & s,
              const std::string & command)
 {
-    // TODO: WRITE THIS!!!
+    if (command == "c" || command == "C")
+    {
+        std::stack<int>().swap(s);  // Clear stack
+        return;
+    }
+
+    if (isInteger(command))
+    {
+        s.push(std::stoi(command));
+        return;
+    }
+
+    if (!isBinop(command))
+    {
+        throw std::domain_error("Unknown command: \"" + command + "\"");
+    }
+
+    // We have a binary arithmetic operator: +, -, *, /
+
+    if (s.size() < 2)
+    {
+        throw std::out_of_range("Stack underflow in \"" + command
+                              + "\" operation");
+    }
+
+    int b = s.top();
+    s.pop();
+    int a = s.top();
+    s.pop();
+
+    if (command == "+")
+        s.push(a + b);
+    else if (command == "-")
+        s.push(a - b);
+    else if (command == "*")
+        s.push(a * b);
+    else  // command == "/"
+    {
+        if (b == 0)
+            throw std::overflow_error("Division by zero");
+        else
+            s.push(a / b);
+    }
 }
 
