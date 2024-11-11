@@ -1,6 +1,7 @@
-// heap_sort.cpp  UNFINISHED
+// heap_sort.cpp
 // Glenn G. Chappell
-// 2024-11-10
+// Started: 2024-11-10
+// Updated: 2024-11-11
 //
 // For CS 311 Fall 2024
 // Heap Sort
@@ -51,7 +52,8 @@ const int MAXVAL = 999'999'999;
 template <typename RAIter>
 void heapSort(RAIter first, RAIter last)
 {
-    // TODO: WRITE THIS!!!
+    heapMake(first, last);
+    heapToSorted(first, last);
 }
 
 
